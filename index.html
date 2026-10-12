@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full bg-slate-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TKA CAMP Lesson 2 - Almazaya Islamic School</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        almazaya: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        },
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            user-select: none;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .nav-btn.active {
+            background-color: #065f46;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(6, 95, 70, 0.25);
+        }
+
+        .math-tex {
+            font-size: 1.05em;
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col text-slate-800 bg-slate-100 overflow-x-hidden">
+
+    <!-- Top Header Navigation -->
+    <header class="bg-gradient-to-r from-almazaya-900 via-almazaya-800 to-teal-800 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchView('home')">
+                <div class="w-10 h-10 rounded-xl bg-gold-500 flex items-center justify-center font-extrabold text-almazaya-900 shadow-md text-xl">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight tracking-wide">ALMAZAYA ISLAMIC SCHOOL</h1>
+                    <p class="text-xs text-emerald-200 font-medium">TKA CAMP 2026 • Persiapan Ujian Kelas 9</p>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex space-x-2 bg-almazaya-900/50 p-1.5 rounded-2xl border border-emerald-700/50">
+                <button id="nav-home" onclick="switchView('home')" class="nav-btn active px-4 py-1.5 rounded-xl text-sm font-semibold transition-all duration-200 flex items-center space-x-2">
+                    <i class="fa-solid fa-house text-xs"></i>
+                    <span>Beranda</span>
+                </button>
+                <button id="nav-modul" onclick="switchView('modul')" class="nav-btn px-4 py-1.5 rounded-xl text-sm font-semibold transition-all duration-200 text-emerald-100 hover:text-white flex items-center space-x-2">
+                    <i class="fa-solid fa-book-open text-xs"></i>
+                    <span>Modul Materi</span>
+                </button>
+                <button id="nav-lesson2" onclick="switchView('lesson2')" class="nav-btn px-4 py-1.5 rounded-xl text-sm font-semibold transition-all duration-200 text-emerald-100 hover:text-white flex items-center space-x-2">
+                    <i class="fa-solid fa-file-pen text-xs"></i>
+                    <span>Lesson II (Soal/Ujian)</span>
+                </button>
+            </nav>
+
+            <!-- Student Profile Badge -->
+            <div class="flex items-center space-x-3 bg-almazaya-900/60 border border-emerald-600/40 px-3 py-1.5 rounded-full">
+                <!-- SVG Avatar Hijab Student / Kopyah Student -->
+                <div class="w-8 h-8 rounded-full bg-emerald-100 border border-gold-400 overflow-hidden flex items-center justify-center">
+                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                        <circle cx="50" cy="50" r="45" fill="#e0f2fe"/>
+                        <!-- Student Kopyah / Hijab SVG Avatar -->
+                        <path d="M 30 75 C 30 55, 70 55, 70 75 Z" fill="#047857" />
+                        <circle cx="50" cy="45" r="18" fill="#fde047" opacity="0.3"/>
+                        <circle cx="50" cy="42" r="15" fill="#fcd34d"/>
+                        <path d="M 32 38 C 32 20, 68 20, 68 38 C 68 45, 32 45, 32 38 Z" fill="#065f46"/>
+                        <circle cx="44" cy="42" r="2" fill="#1e293b"/>
+                        <circle cx="56" cy="42" r="2" fill="#1e293b"/>
+                        <path d="M 46 48 Q 50 51 54 48" stroke="#1e293b" stroke-width="1.5" fill="none"/>
+                    </svg>
+                </div>
+                <div class="text-left hidden sm:block">
+                    <div class="text-xs font-bold text-emerald-100">Siswa Kelas 9</div>
+                    <div class="text-[10px] text-emerald-300">TKA CAMP Mode</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+
+        <!-- VIEW 1: HOME SCREEN (LAPTOP FRIENDLY LANDSCAPE) -->
+        <section id="view-home" class="space-y-6">
+            
+            <!-- Hero Banner -->
+            <div class="relative bg-gradient-to-r from-almazaya-800 via-teal-800 to-emerald-900 rounded-3xl p-6 md:p-8 text-white shadow-xl overflow-hidden border border-emerald-600/30">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-white text-[220px] pointer-events-none">
+                    <i class="fa-solid fa-calculator"></i>
+                </div>
+                
+                <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">
+                    <div class="space-y-3 max-w-3xl text-center lg:text-left">
+                        <div class="inline-flex items-center space-x-2 bg-gold-500/20 text-gold-400 border border-gold-500/30 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                            <i class="fa-solid fa-star text-gold-400"></i>
+                            <span>Pelatihan Intensif TKA 2026</span>
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-tight">
+                            Selamat Datang di <span class="text-gold-400">TKA CAMP</span> Lesson 2
+                        </h2>
+                        <p class="text-emerald-100 text-sm sm:text-base leading-relaxed">
+                            Kuasai materi <span class="font-semibold text-white">Aljabar, SPLDV, Fungsi, serta Barisan & Deret</span> untuk persiapan Ujian Tes Kemampuan Akademik tingkat SMP. Pilih modul belajar atau langsung uji kemampuanmu!
+                        </p>
+                        <div class="pt-2 flex flex-wrap gap-3 justify-center lg:justify-start text-xs font-semibold">
+                            <span class="bg-emerald-900/80 border border-emerald-600 px-3 py-1.5 rounded-lg flex items-center space-x-1.5">
+                                <i class="fa-solid fa-check-circle text-emerald-400"></i>
+                                <span>20 Soal TKA Standar UTBK/SMP</span>
+                            </span>
+                            <span class="bg-emerald-900/80 border border-emerald-600 px-3 py-1.5 rounded-lg flex items-center space-x-1.5">
+                                <i class="fa-solid fa-lightbulb text-gold-400"></i>
+                                <span>Pembahasan Lengkap & Step-by-step</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TWO LARGE MENU CARDS (LANDSCAPE / LAPTOP OPTIMIZED) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                
+                <!-- CARD 1: MODUL & MATERI BELAJAR -->
+                <div onclick="switchView('modul')" class="group relative bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-md hover:shadow-2xl hover:border-almazaya-600 transition-all duration-300 cursor-pointer flex flex-col justify-between overflow-hidden">
+                    <div class="absolute -right-8 -top-8 w-36 h-36 bg-emerald-50 rounded-full group-hover:scale-125 transition-transform duration-500 ease-out z-0"></div>
+                    
+                    <div class="relative z-10 space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-almazaya-100 text-almazaya-800 flex items-center justify-center text-2xl font-bold group-hover:bg-almazaya-800 group-hover:text-white transition-colors duration-300 shadow-sm">
+                            <i class="fa-solid fa-book-bookmark"></i>
+                        </div>
+
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">Buku Saku Digital</span>
+                            <h3 class="text-2xl font-extrabold text-slate-900 group-hover:text-almazaya-800 transition-colors">
+                                Modul / Materi Belajar
+                            </h3>
+                        </div>
+
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Rangkuman rumus penting, sifat-sifat aljabar, metode penyelesaian SPLDV, konsep fungsi & relasi, hingga rumus suku ke-n dan jumlah deret aritmetika & geometri.
+                        </p>
+
+                        <!-- Topic List Tags -->
+                        <div class="pt-2 flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 bg-slate-100 text-slate-700 rounded-lg text-xs font-semibold">Aljabar</span>
+                            <span class="px-2.5 py-1 bg-slate-100 text-slate-700 rounded-lg text-xs font-semibold">SPLDV</span>
+                            <span class="px-2.5 py-1 bg-slate-100 text-slate-700 rounded-lg text-xs font-semibold">Fungsi</span>
+                            <span class="px-2.5 py-1 bg-slate-100 text-slate-700 rounded-lg text-xs font-semibold">Baris & Deret</span>
+                        </div>
+                    </div>
+
+                    <div class="relative z-10 pt-6 mt-4 border-t border-slate-100 flex items-center justify-between text-almazaya-800 font-bold text-sm">
+                        <span>Buka Modul Belajar</span>
+                        <div class="w-8 h-8 rounded-full bg-emerald-50 group-hover:bg-almazaya-800 group-hover:text-white flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2: LESSON II (SOAL & SIMULASI UJIAN) -->
+                <div onclick="switchView('lesson2')" class="group relative bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-md hover:shadow-2xl hover:border-gold-500 transition-all duration-300 cursor-pointer flex flex-col justify-between overflow-hidden">
+                    <div class="absolute -right-8 -top-8 w-36 h-36 bg-amber-50 rounded-full group-hover:scale-125 transition-transform duration-500 ease-out z-0"></div>
+                    
+                    <div class="relative z-10 space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center text-2xl font-bold group-hover:bg-gold-500 group-hover:text-slate-900 transition-colors duration-300 shadow-sm">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                        </div>
+
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-600">Simulasi & Latihan TKA</span>
+                            <h3 class="text-2xl font-extrabold text-slate-900 group-hover:text-gold-600 transition-colors">
+                                Lesson II: Soal & Ujian
+                            </h3>
+                        </div>
+
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Latihan 20 Soal TKA dengan 2 mode pilihan: <span class="font-bold text-slate-800">Mode Belajar</span> (dilengkapi pembahasan instan & petunjuk) atau <span class="font-bold text-slate-800">Mode Ujian</span> (dengan timer & nilai otomatis).
+                        </p>
+
+                        <!-- Features list -->
+                        <div class="pt-2 flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 bg-amber-50 text-amber-800 border border-amber-200/60 rounded-lg text-xs font-semibold">Pilihan Ganda</span>
+                            <span class="px-2.5 py-1 bg-amber-50 text-amber-800 border border-amber-200/60 rounded-lg text-xs font-semibold">PG Kompleks</span>
+                            <span class="px-2.5 py-1 bg-amber-50 text-amber-800 border border-amber-200/60 rounded-lg text-xs font-semibold">Benar / Salah</span>
+                        </div>
+                    </div>
+
+                    <div class="relative z-10 pt-6 mt-4 border-t border-slate-100 flex items-center justify-between text-gold-600 font-bold text-sm">
+                        <span>Mulai Latihan / Ujian</span>
+                        <div class="w-8 h-8 rounded-full bg-amber-50 group-hover:bg-gold-500 group-hover:text-slate-900 flex items-center justify-center transition-all">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- VIEW 2: MODUL MATERI BELAJAR (BUKU DIGITAl) -->
+        <section id="view-modul" class="hidden space-y-6">
+            
+            <!-- Header bar for Modul -->
+            <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div>
+                    <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Modul Referensi Resmi</span>
+                    <h2 class="text-2xl font-black text-slate-900">Modul TKA CAMP - Lesson 2</h2>
+                    <p class="text-xs text-slate-500">Ringkasan Teori, Rumus Utama, dan Contoh Soal Persiapan Ujian TKA SMP</p>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <div class="relative">
+                        <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                        <input type="text" id="module-search" oninput="filterModuleTopic()" placeholder="Cari rumus / kata kunci..." class="pl-8 pr-3 py-1.5 bg-slate-100 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-almazaya-600 w-48 sm:w-64">
+                    </div>
+                    <button onclick="switchView('home')" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-xl text-xs font-bold text-slate-700">
+                        <i class="fa-solid fa-arrow-left mr-1"></i> Kembali
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modul Content Layout with Sidebar Navigation -->
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                
+                <!-- Topic Navigation Tabs -->
+                <div class="lg:col-span-1 space-y-2 sticky top-20">
+                    <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm space-y-1">
+                        <div class="text-xs font-extrabold uppercase tracking-wider text-slate-400 px-3 py-2">Daftar Isi Bab</div>
+                        
+                        <button onclick="scrollToModuleSection('m-aljabar')" class="modul-tab-btn active w-full text-left px-3 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-between text-slate-700 hover:bg-emerald-50 hover:text-emerald-800">
+                            <span class="flex items-center space-x-2">
+                                <i class="fa-solid fa-square-root-variable text-emerald-600"></i>
+                                <span>1. Bentuk Aljabar</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+
+                        <button onclick="scrollToModuleSection('m-spldv')" class="modul-tab-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-between text-slate-700 hover:bg-emerald-50 hover:text-emerald-800">
+                            <span class="flex items-center space-x-2">
+                                <i class="fa-solid fa-equals text-emerald-600"></i>
+                                <span>2. SPLDV</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+
+                        <button onclick="scrollToModuleSection('m-fungsi')" class="modul-tab-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-between text-slate-700 hover:bg-emerald-50 hover:text-emerald-800">
+                            <span class="flex items-center space-x-2">
+                                <i class="fa-solid fa-diagram-project text-emerald-600"></i>
+                                <span>3. Relasi & Fungsi</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+
+                        <button onclick="scrollToModuleSection('m-barisan')" class="modul-tab-btn w-full text-left px-3 py-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-between text-slate-700 hover:bg-emerald-50 hover:text-emerald-800">
+                            <span class="flex items-center space-x-2">
+                                <i class="fa-solid fa-chart-line text-emerald-600"></i>
+                                <span>4. Barisan & Deret</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+
+                    <!-- Quick Formula Card -->
+                    <div class="bg-gradient-to-br from-almazaya-800 to-teal-900 rounded-2xl p-4 text-white space-y-3 shadow-md">
+                        <div class="flex items-center space-x-2 text-gold-400 font-bold text-xs uppercase tracking-wider">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span>Tips Cepat TKA</span>
+                        </div>
+                        <p class="text-xs text-emerald-100 leading-relaxed">
+                            Selalu cek syarat domain pada fungsi, serta perhatikan pola selisih tetap (aritmetika) atau rasio pengali (geometri) pada barisan!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Module Main Text Body -->
+                <div class="lg:col-span-3 space-y-8">
+                    
+                    <!-- BAB 1: ALJABAR & PEMFAKTORAN -->
+                    <div id="m-aljabar" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+                        <div class="border-b border-slate-100 pb-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-10 h-10 rounded-xl bg-emerald-100 text-almazaya-800 font-extrabold flex items-center justify-center text-lg">1</span>
+                                <div>
+                                    <h3 class="text-xl font-black text-slate-900">Operasi & Pemfaktoran Aljabar</h3>
+                                    <p class="text-xs text-slate-500">Pengertian, Sifat Distributif, dan Menyederhanakan Pecahan Aljabar</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Theory Content -->
+                        <div class="space-y-4 text-sm text-slate-700 leading-relaxed">
+                            <h4 class="font-extrabold text-slate-900 text-base flex items-center space-x-2">
+                                <i class="fa-solid fa-circle-dot text-emerald-600 text-xs"></i>
+                                <span>1. Operasi Perkalian Suku Dua</span>
+                            </h4>
+                            <p>
+                                Perkalian antara dua bentuk linear dua suku menggunakan <strong>Sifat Distributif</strong> (sering disebut metode FOIL / perkalian silang):
+                            </p>
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl font-mono text-center text-slate-800">
+                                $(ax + b)(cx + d) = ac \cdot x^2 + (ad + bc)x + bd$
+                            </div>
+
+                            <h4 class="font-extrabold text-slate-900 text-base flex items-center space-x-2 pt-2">
+                                <i class="fa-solid fa-circle-dot text-emerald-600 text-xs"></i>
+                                <span>2. Formula Pemfaktoran Istimewa</span>
+                            </h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                                <div class="bg-emerald-50/60 border border-emerald-200 p-3.5 rounded-xl">
+                                    <div class="font-bold text-emerald-900 mb-1">Selisih Kuadrat</div>
+                                    <div class="font-mono text-emerald-800 text-sm">$a^2 - b^2 = (a + b)(a - b)$</div>
+                                </div>
+                                <div class="bg-emerald-50/60 border border-emerald-200 p-3.5 rounded-xl">
+                                    <div class="font-bold text-emerald-900 mb-1">Kuadrat Suku Dua</div>
+                                    <div class="font-mono text-emerald-800 text-sm">$(a \pm b)^2 = a^2 \pm 2ab + b^2$</div>
+                                </div>
+                                <div class="bg-emerald-50/60 border border-emerald-200 p-3.5 rounded-xl md:col-span-2">
+                                    <div class="font-bold text-emerald-900 mb-1">Bentuk Kuadrat $ax^2 + bx + c$</div>
+                                    <div>Cari dua bilangan $p$ dan $q$ sedemikian hingga $p \times q = a \cdot c$ dan $p + q = b$.</div>
+                                </div>
+                            </div>
+
+                            <h4 class="font-extrabold text-slate-900 text-base flex items-center space-x-2 pt-2">
+                                <i class="fa-solid fa-circle-dot text-emerald-600 text-xs"></i>
+                                <span>3. Menyederhanakan Pecahan Aljabar</span>
+                            </h4>
+                            <p>
+                                Untuk menyederhanakan pecahan aljabar, faktorkan pembilang dan penyebut terlebih dahulu, lalu hilangkan (coret) faktor persekutuan yang sama.
+                            </p>
+                            <div class="bg-amber-50 border border-amber-200 p-3.5 rounded-xl text-xs text-amber-900">
+                                <strong>Contoh:</strong> $\frac{x^2+3x+2}{x^2+5x+6} = \frac{(x+1)(x+2)}{(x+2)(x+3)} = \frac{x+1}{x+3}$
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BAB 2: SPLDV -->
+                    <div id="m-spldv" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+                        <div class="border-b border-slate-100 pb-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-10 h-10 rounded-xl bg-teal-100 text-teal-800 font-extrabold flex items-center justify-center text-lg">2</span>
+                                <div>
+                                    <h3 class="text-xl font-black text-slate-900">Sistem Persamaan Linear Dua Variabel (SPLDV)</h3>
+                                    <p class="text-xs text-slate-500">Metode Eliminasi, Substitusi, dan Penyelesaian Soal Cerita</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4 text-sm text-slate-700 leading-relaxed">
+                            <p>
+                                Bentuk umum SPLDV dengan dua variabel $x$ dan $y$:
+                            </p>
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl font-mono text-center text-slate-800">
+                                $\begin{cases} a_1 x + b_1 y = c_1 \\ a_2 x + b_2 y = c_2 \end{cases}$
+                            </div>
+
+                            <h4 class="font-extrabold text-slate-900 text-base pt-2">Metode Penyelesaian Utama:</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                                    <div class="font-bold text-slate-900 text-sm mb-1"><i class="fa-solid fa-ban text-red-500 mr-1.5"></i>Metode Eliminasi</div>
+                                    <p>Menghilangkan salah satu variabel dengan menyamakan koefisiennya melalui perkalian skalar, lalu me-jumlahkan atau mengurangkan kedua persamaan.</p>
+                                </div>
+                                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                                    <div class="font-bold text-slate-900 text-sm mb-1"><i class="fa-solid fa-arrows-rotate text-blue-500 mr-1.5"></i>Metode Substitusi</div>
+                                    <p>Nyatakan satu variabel dalam bentuk variabel lain dari salah satu persamaan, lalu substitusikan ke persamaan lainnya.</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-2xl text-xs space-y-2 text-emerald-900">
+                                <div class="font-bold"><i class="fa-solid fa-lightbulb text-gold-500 mr-1"></i>Langkah Praktis Soal Cerita SPLDV:</div>
+                                <ol class="list-decimal list-inside space-y-1">
+                                    <li>Pahami dan misalkan barang/objek dengan variabel (misal: $x = \text{buku}, y = \text{pensil}$).</li>
+                                    <li>Susun model matematika dari kalimat soal.</li>
+                                    <li>Selesaikan sistem persamaan untuk mendapat nilai $x$ dan $y$.</li>
+                                    <li>Jawab pertanyaan akhir dengan memasukkan nilai $x$ dan $y$ yang didapat.</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BAB 3: FUNGSI & RELASI -->
+                    <div id="m-fungsi" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+                        <div class="border-b border-slate-100 pb-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 font-extrabold flex items-center justify-center text-lg">3</span>
+                                <div>
+                                    <h3 class="text-xl font-black text-slate-900">Relasi, Fungsi & Korespondensi Satu-Satu</h3>
+                                    <p class="text-xs text-slate-500">Definisi, Syarat Fungsi, Evaluasi Nilai Fungsi, dan Pemetaan Unik</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4 text-sm text-slate-700 leading-relaxed">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
+                                    <h4 class="font-bold text-slate-900">1. Pengertian Fungsi (Pemetaan)</h4>
+                                    <p class="text-xs">
+                                        Relasi khusus yang memasangkan <strong>setiap elemen</strong> himpunan daerah asal (Domain) dengan <strong>tepat satu</strong> elemen himpunan daerah kawan (Kodomain). Tidak boleh ada elemen domain yang bercabang atau tidak memiliki pasangan!
+                                    </p>
+                                </div>
+                                <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
+                                    <h4 class="font-bold text-slate-900">2. Korespondensi Satu-Satu</h4>
+                                    <p class="text-xs">
+                                        Fungsi khusus di mana $n(A) = n(B) = n$. Setiap anggota A dipasangkan dengan tepat satu anggota B dan sebaliknya.
+                                        <br><strong>Banyaknya korespondensi 1-1:</strong> $n! = n \times (n-1) \times \dots \times 1$
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="bg-amber-50/70 border border-amber-200 p-4 rounded-2xl space-y-2">
+                                <h4 class="font-bold text-amber-900 text-xs uppercase tracking-wider">Rumus Evaluasi Fungsi Linear</h4>
+                                <p class="text-xs text-amber-900">
+                                    Fungsi linear umumnya ditulis $f(x) = mx + n$ atau $f(x) = px + q$. Jika diketahui nilai fungsi pada dua titik $f(x_1) = y_1$ dan $f(x_2) = y_2$, nilai $m$ dan $n$ dapat dicari dengan membuat sistem persamaan linear.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BAB 4: BARISAN & DERET -->
+                    <div id="m-barisan" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+                        <div class="border-b border-slate-100 pb-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-800 font-extrabold flex items-center justify-center text-lg">4</span>
+                                <div>
+                                    <h3 class="text-xl font-black text-slate-900">Barisan & Deret (Aritmetika & Geometri)</h3>
+                                    <p class="text-xs text-slate-500">Pola Bilangan, Beda (b), Rasio (r), Suku ke-n ($U_n$), dan Jumlah Deret ($S_n$)</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-6 text-sm text-slate-700">
+                            <!-- Aritmetika Card -->
+                            <div class="bg-indigo-50/50 border border-indigo-200 p-5 rounded-2xl space-y-3">
+                                <h4 class="font-extrabold text-indigo-900 text-base flex items-center justify-between">
+                                    <span>A. Barisan & Deret Aritmetika (Pola Penjumlahan)</span>
+                                    <span class="text-xs bg-indigo-200 text-indigo-800 px-2.5 py-0.5 rounded-full font-bold">Beda Tetap ($b$)</span>
+                                </h4>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                                    <div class="bg-white p-3 rounded-xl border border-indigo-100">
+                                        <span class="text-slate-500 block">Suku ke-n ($U_n$):</span>
+                                        <span class="font-mono text-indigo-900 font-bold text-sm">$U_n = a + (n - 1)b$</span>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-xl border border-indigo-100">
+                                        <span class="text-slate-500 block">Beda ($b$):</span>
+                                        <span class="font-mono text-indigo-900 font-bold text-sm">$b = U_n - U_{n-1}$</span>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-xl border border-indigo-100 sm:col-span-2">
+                                        <span class="text-slate-500 block">Jumlah $n$ Suku Pertama ($S_n$):</span>
+                                        <span class="font-mono text-indigo-900 font-bold text-sm">$S_n = \frac{n}{2}(a + U_n) = \frac{n}{2}\big(2a + (n - 1)b\big)$</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Geometri Card -->
+                            <div class="bg-purple-50/50 border border-purple-200 p-5 rounded-2xl space-y-3">
+                                <h4 class="font-extrabold text-purple-900 text-base flex items-center justify-between">
+                                    <span>B. Barisan & Deret Geometri (Pola Perkalian)</span>
+                                    <span class="text-xs bg-purple-200 text-purple-800 px-2.5 py-0.5 rounded-full font-bold">Rasio Tetap ($r$)</span>
+                                </h4>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                                    <div class="bg-white p-3 rounded-xl border border-purple-100">
+                                        <span class="text-slate-500 block">Suku ke-n ($U_n$):</span>
+                                        <span class="font-mono text-purple-900 font-bold text-sm">$U_n = a \cdot r^{n-1}$</span>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-xl border border-purple-100">
+                                        <span class="text-slate-500 block">Rasio ($r$):</span>
+                                        <span class="font-mono text-purple-900 font-bold text-sm">$r = \frac{U_n}{U_{n-1}}$</span>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-xl border border-purple-100 sm:col-span-2">
+                                        <span class="text-slate-500 block">Jumlah $n$ Suku Pertama ($S_n$):</span>
+                                        <span class="font-mono text-purple-900 font-bold text-sm">$S_n = \frac{a(r^n - 1)}{r - 1} \quad (r > 1) \quad \text{atau} \quad S_n = \frac{a(1 - r^n)}{1 - r} \quad (r < 1)$</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Pola Berulang Card -->
+                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl text-xs space-y-1">
+                                <div class="font-bold text-slate-800">C. Pola Berulang</div>
+                                <p class="text-slate-600">
+                                    Untuk menentukan suku ke-$N$ pada pola berulang dengan panjang siklus $L$, bagi $N$ dengan $L$. Sisa pembagian ($N \pmod L$) menentukan urutan posisi dalam pola tersebut. (Jika sisa 0, maka urutan ke-$L$).
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- VIEW 3: LESSON II (SOAL & MODE UJIAN / MODE BELAJAR) -->
+        <section id="view-lesson2" class="hidden space-y-6">
+            
+            <!-- Top Controls Bar -->
+            <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center space-x-3 w-full md:w-auto">
+                    <button onclick="switchView('home')" class="p-2 bg-slate-100 hover:bg-slate-200 rounded-xl text-slate-600">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <div>
+                        <div class="flex items-center space-x-2">
+                            <span id="quiz-mode-badge" class="px-2.5 py-0.5 bg-emerald-100 text-almazaya-800 text-[11px] font-black uppercase rounded-full">
+                                MODE BELAJAR
+                            </span>
+                            <span class="text-xs text-slate-400">• TKA Lesson 2</span>
+                        </div>
+                        <h2 class="text-lg font-black text-slate-900">Pelatihan Ujian TKA (20 Nomor)</h2>
+                    </div>
+                </div>
+
+                <!-- Mode Switcher & Timer Container -->
+                <div class="flex items-center justify-between md:justify-end space-x-3 w-full md:w-auto">
+                    <!-- Timer Display (Visible in Ujian mode) -->
+                    <div id="timer-box" class="hidden flex items-center space-x-2 bg-slate-900 text-gold-400 px-3 py-1.5 rounded-xl font-mono text-sm font-bold shadow-inner">
+                        <i class="fa-regular fa-clock"></i>
+                        <span id="timer-display">45:00</span>
+                    </div>
+
+                    <!-- Change Mode Modal Trigger -->
+                    <button onclick="openModeModal()" class="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl text-xs font-bold transition-all flex items-center space-x-1.5">
+                        <i class="fa-solid fa-sliders"></i>
+                        <span>Ganti Mode</span>
+                    </button>
+
+                    <!-- Submit Exam Button -->
+                    <button id="btn-submit-exam" onclick="confirmSubmitExam()" class="hidden px-4 py-2 bg-gold-500 hover:bg-gold-600 text-slate-950 font-extrabold rounded-xl text-xs shadow-md transition-all">
+                        <i class="fa-solid fa-paper-plane mr-1"></i> Selesaikan Ujian
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Layout: Left Question Card, Right Navigator -->
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                
+                <!-- MAIN QUESTION BOX (3 Cols) -->
+                <div class="lg:col-span-3 space-y-6">
+                    
+                    <div id="question-card" class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-md space-y-6 min-h-[420px] flex flex-col justify-between">
+                        
+                        <!-- Question Header -->
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                                <div class="flex items-center space-x-2">
+                                    <span class="w-9 h-9 rounded-xl bg-almazaya-800 text-white font-extrabold flex items-center justify-center text-sm shadow-sm" id="q-number-badge">
+                                        1
+                                    </span>
+                                    <span class="text-xs font-bold text-slate-500" id="q-type-badge">Pilihan Ganda</span>
+                                </div>
+                                <span class="text-xs font-semibold text-slate-400" id="q-topic-tag">Aljabar</span>
+                            </div>
+
+                            <!-- Question Body Text -->
+                            <div class="text-sm sm:text-base text-slate-800 font-medium leading-relaxed" id="q-text">
+                                <!-- Dynamic Question Content loaded via JS -->
+                            </div>
+                        </div>
+
+                        <!-- Options / Answer Input Container -->
+                        <div class="space-y-3 pt-2" id="q-options-container">
+                            <!-- Dynamic Options loaded via JS -->
+                        </div>
+
+                        <!-- Solution Box (For Mode Belajar or Post-Exam) -->
+                        <div id="solution-box" class="hidden bg-emerald-50/80 border border-emerald-200 rounded-2xl p-5 space-y-3">
+                            <div class="flex items-center justify-between text-almazaya-900 font-extrabold text-xs uppercase tracking-wider">
+                                <span class="flex items-center space-x-1.5">
+                                    <i class="fa-solid fa-square-check text-emerald-600"></i>
+                                    <span>Kunci & Pembahasan Lengkap</span>
+                                </span>
+                                <span id="sol-key-badge" class="px-2 py-0.5 bg-emerald-200 text-emerald-900 rounded font-mono text-[11px]">Kunci: A</span>
+                            </div>
+                            <div class="text-xs text-slate-700 leading-relaxed space-y-2 border-t border-emerald-200/60 pt-2" id="sol-text">
+                                <!-- Dynamic Solution content -->
+                            </div>
+                        </div>
+
+                        <!-- Bottom Action Buttons (Prev / Next) -->
+                        <div class="flex items-center justify-between border-t border-slate-100 pt-5">
+                            <button id="btn-prev-q" onclick="prevQuestion()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 disabled:opacity-40 disabled:cursor-not-allowed rounded-xl text-xs font-bold text-slate-700 transition-all">
+                                <i class="fa-solid fa-chevron-left mr-1"></i> Sebelumnya
+                            </button>
+
+                            <button id="btn-toggle-pembahasan" onclick="togglePembahasan()" class="px-3.5 py-2 bg-emerald-100 hover:bg-emerald-200 text-almazaya-800 rounded-xl text-xs font-extrabold transition-all">
+                                <i class="fa-solid fa-lightbulb mr-1"></i> <span id="toggle-pembahasan-text">Lihat Pembahasan</span>
+                            </button>
+
+                            <button id="btn-next-q" onclick="nextQuestion()" class="px-4 py-2 bg-almazaya-800 hover:bg-almazaya-900 text-white rounded-xl text-xs font-bold transition-all shadow-sm">
+                                Selanjutnya <i class="fa-solid fa-chevron-right ml-1"></i>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- RIGHT SIDEBAR: QUESTION NAVIGATOR (1 Col) -->
+                <div class="lg:col-span-1 space-y-4">
+                    <div class="bg-white rounded-3xl p-5 border border-slate-200 shadow-sm space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                            <span class="text-xs font-extrabold text-slate-800 uppercase tracking-wider">Navigasi Soal</span>
+                            <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full" id="progress-counter">0 / 20 Terjawab</span>
+                        </div>
+
+                        <!-- Number Grid -->
+                        <div class="grid grid-cols-5 gap-2" id="nav-grid">
+                            <!-- Rendered 1 to 20 dynamically -->
+                        </div>
+
+                        <!-- Legend -->
+                        <div class="border-t border-slate-100 pt-3 space-y-1.5 text-[11px] text-slate-500 font-medium">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 rounded bg-almazaya-800"></span>
+                                <span>Sudah Dijawab</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 rounded bg-slate-100 border border-slate-300"></span>
+                                <span>Belum Dijawab</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 rounded bg-amber-400"></span>
+                                <span>Soal Aktif</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- RESULT SCREEN / MODAL AFTER EXAM -->
+        <div id="result-modal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4">
+            <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl space-y-6 text-center transform transition-all border border-slate-100">
+                
+                <div class="w-20 h-20 rounded-full bg-emerald-100 text-almazaya-800 mx-auto flex items-center justify-center text-3xl shadow-inner border-2 border-emerald-300">
+                    <i class="fa-solid fa-trophy text-gold-500"></i>
+                </div>
+
+                <div class="space-y-1">
+                    <span class="text-xs font-extrabold text-emerald-600 uppercase tracking-wider">Hasil Ujian TKA CAMP</span>
+                    <h3 class="text-2xl font-black text-slate-900">Nilai Akhir Anda</h3>
+                </div>
+
+                <!-- Big Score Circle -->
+                <div class="bg-gradient-to-br from-almazaya-800 to-teal-900 rounded-3xl p-6 text-white shadow-lg space-y-1">
+                    <div class="text-5xl font-black text-gold-400" id="final-score-text">0</div>
+                    <div class="text-xs text-emerald-200 uppercase font-semibold tracking-wider" id="final-score-subtitle">Dari Total 100 Poin</div>
+                </div>
+
+                <!-- Stats summary -->
+                <div class="grid grid-cols-3 gap-2 text-center text-xs">
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                        <div class="text-slate-400">Benar</div>
+                        <div class="font-bold text-emerald-600 text-lg" id="score-correct-count">0</div>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                        <div class="text-slate-400">Salah</div>
+                        <div class="font-bold text-red-500 text-lg" id="score-wrong-count">0</div>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+                        <div class="text-slate-400">Akurasi</div>
+                        <div class="font-bold text-slate-800 text-lg" id="score-accuracy-text">0%</div>
+                    </div>
+                </div>
+
+                <div class="pt-2 flex flex-col sm:flex-row gap-3">
+                    <button onclick="reviewExamAnswers()" class="flex-1 py-3 bg-almazaya-800 hover:bg-almazaya-900 text-white font-bold rounded-xl text-xs transition-all shadow-md">
+                        <i class="fa-solid fa-magnifying-glass mr-1"></i> Review Pembahasan
+                    </button>
+                    <button onclick="restartQuiz()" class="py-3 px-4 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold rounded-xl text-xs transition-all">
+                        <i class="fa-solid fa-rotate-right mr-1"></i> Ulangi
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- MODE SELECTION MODAL -->
+        <div id="mode-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+            <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-6 border border-slate-100">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                    <h3 class="font-extrabold text-slate-900 text-lg">Pilih Mode Pengerjaan</h3>
+                    <button onclick="closeModeModal()" class="text-slate-400 hover:text-slate-600 text-sm">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <div class="space-y-3">
+                    <!-- Mode Belajar option -->
+                    <div onclick="selectQuizMode('belajar')" class="p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-50/50 hover:bg-emerald-50 cursor-pointer transition-all flex items-start space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold shrink-0">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <div class="font-bold text-slate-900 text-sm">Mode Belajar (Latihan)</div>
+                            <div class="text-xs text-slate-600 mt-0.5">Dapat melihat kunci & pembahasan langsung di tiap nomor. Tanpa batasan waktu.</div>
+                        </div>
+                    </div>
+
+                    <!-- Mode Ujian option -->
+                    <div onclick="selectQuizMode('ujian')" class="p-4 rounded-2xl border-2 border-slate-200 hover:border-gold-500 hover:bg-amber-50/50 cursor-pointer transition-all flex items-start space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-gold-500 text-slate-900 flex items-center justify-center font-bold shrink-0">
+                            <i class="fa-solid fa-stopwatch"></i>
+                        </div>
+                        <div>
+                            <div class="font-bold text-slate-900 text-sm">Mode Ujian (Simulasi Real)</div>
+                            <div class="text-xs text-slate-600 mt-0.5">Timer 45 menit. Pembahasan disembunyikan sampai ujian selesai disubmit.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button onclick="closeModeModal()" class="w-full py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl text-xs">
+                        Terapkan & Lanjutkan
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Global helper to trigger KaTeX math rendering reliably across all dynamic DOM changes
+        function renderMath() {
+            if (window.renderMathInElement) {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '$', right: '$', display: false}
+                    ],
+                    throwOnError: false
+                });
+            }
+        }
+
+        const questionsData = [
+            {
+                id: 1,
+                type: 'single', // Pilihan Ganda Single
+                topic: 'Aljabar',
+                text: 'Bentuk sederhana dari operasi perkalian aljabar $(3t+7)(2t-5)$ adalah ....',
+                options: [
+                    'a. $6t^{2}-t-35$',
+                    'b. $6t^{2}+t-35$',
+                    'c. $6t^{2}-t+35$',
+                    'd. $6t^{2}+t+35$'
+                ],
+                key: 0, // A
+                solution: 'Gunakan sifat distributif perkalian suku dua:<br>' +
+                          '$(3t+7)(2t-5) = 3t(2t) + 3t(-5) + 7(2t) + 7(-5)$<br>' +
+                          '$= 6t^2 - 15t + 14t - 35$<br>' +
+                          '$= 6t^2 - t - 35$ <b>(Pilihan A)</b>'
+            },
+            {
+                id: 2,
+                type: 'single',
+                topic: 'Aljabar',
+                text: 'Bentuk sederhana dari pecahan aljabar $\\frac{x^{2}+3x+2}{x^{2}+5x+6}$ adalah ....',
+                options: [
+                    'a. $\\frac{x+1}{x+3}$',
+                    'b. $\\frac{x+1}{\\frac{1}{3}x+3}$',
+                    'c. $\\frac{x+1}{2x+4}$',
+                    'd. $\\frac{x^{2}+1}{x^{2}+3}$'
+                ],
+                key: 0, // A
+                solution: 'Faktorkan pembilang dan penyebut:<br>' +
+                          '• Pembilang: $x^2 + 3x + 2 = (x + 1)(x + 2)$<br>' +
+                          '• Penyebut: $x^2 + 5x + 6 = (x + 2)(x + 3)$<br>' +
+                          '$\\frac{x^2+3x+2}{x^2+5x+6} = \\frac{(x+1)(x+2)}{(x+2)(x+3)} = \\frac{x+1}{x+3}$ <b>(Pilihan A)</b>'
+            },
+            {
+                id: 3,
+                type: 'single',
+                topic: 'Aljabar',
+                text: 'Kebun sayur Pak Jaga berbentuk persegi/persegi panjang dengan panjang diagonal-diagonalnya $(4x+6)$ meter dan $(2x+16)$ meter. Panjang diagonal kebun sayur tersebut sebenarnya adalah ....',
+                options: [
+                    'a. 38 meter',
+                    'b. 32 meter',
+                    'c. 28 meter',
+                    'd. 26 meter'
+                ],
+                key: 3, // D
+                solution: 'Panjang kedua diagonal bangun persegi / persegi panjang adalah sama panjang:<br>' +
+                          '$4x + 6 = 2x + 16 \\Rightarrow 2x = 10 \\Rightarrow x = 5$<br>' +
+                          'Substitusi $x = 5$ ke salah satu diagonal:<br>' +
+                          '$\\text{Diagonal} = 4(5) + 6 = 20 + 6 = 26\\text{ meter}$ <b>(Pilihan D)</b>'
+            },
+            {
+                id: 4,
+                type: 'single',
+                topic: 'SPLDV',
+                text: 'Penyelesaian dari sistem persamaan linear dua variabel di bawah ini:<br>' +
+                      '(i) $3x + 2y = -1$<br>(ii) $5x - 3y = -27$<br>adalah pasangan nilai $(x, y) = ...$',
+                options: [
+                    'a. (-6, -1)',
+                    'b. (-1, 1)',
+                    'c. (-3, 4)',
+                    'd. (3, -5)'
+                ],
+                key: 2, // C
+                solution: 'Eliminasi variabel $y$:<br>' +
+                          '$3x + 2y = -1 \\quad (\\times 3) \\Rightarrow 9x + 6y = -3$<br>' +
+                          '$5x - 3y = -27 \\quad (\\times 2) \\Rightarrow 10x - 6y = -54$<br>' +
+                          'Jumlahkan kedua persamaan: $19x = -57 \\Rightarrow x = -3$<br>' +
+                          'Substitusi $x = -3$ ke $3x + 2y = -1$:<br>' +
+                          '$3(-3) + 2y = -1 \\Rightarrow -9 + 2y = -1 \\Rightarrow 2y = 8 \\Rightarrow y = 4$<br>' +
+                          'Pasangan penyelesaian: $(-3, 4)$ <b>(Pilihan C)</b>'
+            },
+            {
+                id: 5,
+                type: 'single',
+                topic: 'SPLDV',
+                text: 'Hana membeli 2 potong kue dan 3 botol teh dengan harga Rp26.000,00. Putri membeli 1 potong kue dan 2 botol teh seharga Rp14.000,00. Jika Kira membawa uang sebesar Rp11.000,00, apakah uang Kira cukup untuk membeli 1 potong kue dan 1 botol teh?',
+                options: [
+                    'a. Bisa, bahkan ia akan mendapatkan kembalian Rp1.000,00',
+                    'b. Tidak bisa karena uang Kira kurang Rp2.000,00',
+                    'c. Bisa, karena uang yang dibutuhkan hanyalah Rp9.000,00',
+                    'd. Tidak bisa karena uang Kira kurang Rp1.000,00'
+                ],
+                key: 3, // D
+                solution: 'Misalkan $x = \\text{kue}$ dan $y = \\text{teh}$:<br>' +
+                          '1) $2x + 3y = 26.000$<br>' +
+                          '2) $x + 2y = 14.000 \\Rightarrow x = 14.000 - 2y$<br>' +
+                          'Substitusi ke persamaan (1):<br>' +
+                          '$2(14.000 - 2y) + 3y = 26.000 \\Rightarrow 28.000 - y = 26.000 \\Rightarrow y = 2.000$<br>' +
+                          'Harga $x = 14.000 - 2(2.000) = \\text{Rp}10.000,00$<br>' +
+                          'Total $1\\text{ kue} + 1\\text{ teh} = 10.000 + 2.000 = \\text{Rp}12.000,00$.<br>' +
+                          'Karena Kira hanya membawa Rp11.000,00, uang Kira kurang Rp1.000,00. <b>(Pilihan D)</b>'
+            },
+            {
+                id: 6,
+                type: 'single',
+                topic: 'Fungsi',
+                text: 'Diketahui fungsi linear $f(x) = 3x + 4$. Nilai dari $f(2) + f(-3)$ adalah ....',
+                options: [
+                    'a. 5',
+                    'b. -15',
+                    'c. -5',
+                    'd. 20'
+                ],
+                key: 0, // A
+                solution: '$f(2) = 3(2) + 4 = 6 + 4 = 10$<br>' +
+                          '$f(-3) = 3(-3) + 4 = -9 + 4 = -5$<br>' +
+                          '$f(2) + f(-3) = 10 + (-5) = 5$ <b>(Pilihan A)</b>'
+            },
+            {
+                id: 7,
+                type: 'single',
+                topic: 'Fungsi',
+                text: 'Diketahui fungsi $f(x) = mx + n$. Jika nilai $f(-1) = 2$ dan $f(2) = 11$, maka nilai dari $f(4)$ adalah ....',
+                options: [
+                    'a. 17',
+                    'b. 28',
+                    'c. 37',
+                    'd. 60'
+                ],
+                key: 0, // A
+                solution: '$f(-1) = -m + n = 2$ (Pers. 1)<br>' +
+                          '$f(2) = 2m + n = 11$ (Pers. 2)<br>' +
+                          'Kurangkan Pers. 2 dengan Pers. 1: $3m = 9 \\Rightarrow m = 3$, sehingga $n = 5$.<br>' +
+                          'Rumus fungsi $f(x) = 3x + 5 \\Rightarrow f(4) = 3(4) + 5 = 17$ <b>(Pilihan A)</b>'
+            },
+            {
+                id: 8,
+                type: 'single',
+                topic: 'Fungsi',
+                text: 'Diketahui himpunan $P = \\{\\text{huruf vokal}\\}$ dan $Q = \\{\\text{bilangan asli kurang dari 6}\\}$. Banyaknya korespondensi satu-satu yang mungkin dari himpunan P ke Q adalah ....',
+                options: [
+                    'a. 120',
+                    'b. 720',
+                    'c. 36',
+                    'd. 25'
+                ],
+                key: 0, // A
+                solution: 'Anggota $P = \\{a, e, i, o, u\\} \\Rightarrow n(P) = 5$<br>' +
+                          'Anggota $Q = \\{1, 2, 3, 4, 5\\} \\Rightarrow n(Q) = 5$<br>' +
+                          'Banyak korespondensi satu-satu $= n! = 5! = 5 \\times 4 \\times 3 \\times 2 \\times 1 = 120$ <b>(Pilihan A)</b>'
+            },
+            {
+                id: 9,
+                type: 'single',
+                topic: 'Baris dan Deret',
+                text: 'Suku ke-55 dari barisan bilangan 7, 15, 23, 31, 39, ... adalah ....',
+                options: [
+                    'a. 496',
+                    'b. 488',
+                    'c. 447',
+                    'd. 439'
+                ],
+                key: 3, // D
+                solution: 'Suku pertama $(a) = 7$, beda $(b) = 15 - 7 = 8$<br>' +
+                          '$U_{55} = a + (55 - 1)b = 7 + 54(8) = 7 + 432 = 439$ <b>(Pilihan D)</b>'
+            },
+            {
+                id: 10,
+                type: 'single',
+                topic: 'Baris dan Deret',
+                text: 'Diketahui suku ke-5 dan suku ke-10 suatu barisan aritmetika berturut-turut adalah 25 dan 75. Nilai suku ke-18 ($U_{18}$) dari barisan tersebut adalah ....',
+                options: [
+                    'a. 150',
+                    'b. 145',
+                    'c. 100',
+                    'd. 155'
+                ],
+                key: 3, // D
+                solution: '$U_{10} = a + 9b = 75$<br>' +
+                          '$U_{5} = a + 4b = 25$<br>' +
+                          'Kurangkan kedua persamaan: $5b = 50 \\Rightarrow b = 10$.<br>' +
+                          'Substitusi $b = 10 \\Rightarrow a = -15$.<br>' +
+                          '$U_{18} = a + 17b = -15 + 17(10) = -15 + 170 = 155$ <b>(Pilihan D)</b>'
+            },
+            {
+                id: 11,
+                type: 'single',
+                topic: 'Baris dan Deret',
+                text: 'Diketahui suatu barisan bilangan 24, 12, 6, 3, ... Suku ke-9 ($U_9$) dari barisan geometri tersebut adalah ....',
+                options: [
+                    'a. $\\frac{3}{32}$',
+                    'b. $\\frac{12}{256}$',
+                    'c. $\\frac{24}{512}$',
+                    'd. $\\frac{24}{1024}$'
+                ],
+                key: 0, // A
+                solution: 'Suku pertama $(a) = 24$, rasio $(r) = \\frac{12}{24} = \\frac{1}{2}$.<br>' +
+                          '$U_9 = a \\cdot r^8 = 24 \\cdot \\left(\\frac{1}{2}\\right)^8 = 24 \\cdot \\frac{1}{256} = \\frac{24}{256} = \\frac{3}{32}$ <b>(Pilihan A)</b>'
+            },
+            {
+                id: 12,
+                type: 'single',
+                topic: 'Baris dan Deret',
+                text: 'Perhatikan pola berulang berikut:<br>1, 3, 6, 8, 10, 1, 3, 6, 8, 10, 1, 3, ...<br>Angka pada urutan/suku ke-153 adalah ....',
+                options: [
+                    'a. 3',
+                    'b. 6',
+                    'c. 8',
+                    'd. 10'
+                ],
+                key: 1, // B
+                solution: 'Pola berulang terdiri dari 5 angka: [1, 3, 6, 8, 10].<br>' +
+                          '$153 \\div 5 = 30$ sisa 3.<br>' +
+                          'Sisa 3 berarti angka berada pada urutan ke-3 dalam siklus pola berulang, yaitu angka 6. <b>(Pilihan B)</b>'
+            },
+            {
+                id: 13,
+                type: 'multiple', // Pilihan Ganda Kompleks (More than 1 correct)
+                topic: 'Aljabar',
+                text: 'Perhatikan bentuk-bentuk pemfaktoran aljabar di bawah ini. Pernyataan yang BENAR mengenai pemfaktoran aljabar tersebut adalah ....<br><i>(Jawaban benar lebih dari satu.)</i>',
+                options: [
+                    'a. $12x^{2}-14x = 2x(6x-7)$',
+                    'b. $6x^{2}+x-21 = (3x+7)(2x-3)$',
+                    'c. $2x^{2}-5x-25 = (2x+5)(x-5)$',
+                    'd. $4x^{2}-36y^{2} = (2x+6y)(2x-6y)$'
+                ],
+                key: [0, 2, 3], // A, C, D
+                solution: '<b>Analisis Tiap Opsi:</b><br>' +
+                          'a) $2x(6x-7) = 12x^2 - 14x$ <i>(BENAR)</i><br>' +
+                          'b) $(3x+7)(2x-3) = 6x^2 - 9x + 14x - 21 = 6x^2 + 5x - 21 \\neq 6x^2 + x - 21$ <i>(SALAH)</i><br>' +
+                          'c) $(2x+5)(x-5) = 2x^2 - 10x + 5x - 25 = 2x^2 - 5x - 25$ <i>(BENAR)</i><br>' +
+                          'd) $(2x+6y)(2x-6y) = 4x^2 - 36y^2$ <i>(BENAR)</i><br>' +
+                          '<b>Jawaban Benar: A, C, D</b>'
+            },
+            {
+                id: 14,
+                type: 'multiple',
+                topic: 'Fungsi',
+                text: 'Manakah di antara relasi berikut yang merupakan Fungsi (Pemetaan)?<br><i>(Jawaban benar lebih dari satu.)</i>',
+                options: [
+                    'a. {(1,2), (2,4), (3,6), (4,8)}',
+                    'b. {(1,2), (1,3), (2,4), (2,6)}',
+                    'c. {(1,a), (2,a), (3,b), (4,c)}',
+                    'd. {(1,a), (1,b), (2,c), (2,d)}'
+                ],
+                key: [0, 2], // A, C
+                solution: 'Syarat Fungsi: Setiap elemen domain (angka pertama) dipasangkan TEPAT SATU kali.<br>' +
+                          'a) Domain {1, 2, 3, 4} muncul tepat 1 kali $\\Rightarrow$ <b>Fungsi</b><br>' +
+                          'b) Angka 1 dan 2 berulang $\\Rightarrow$ Bukan Fungsi<br>' +
+                          'c) Domain {1, 2, 3, 4} muncul tepat 1 kali $\\Rightarrow$ <b>Fungsi</b><br>' +
+                          'd) Angka 1 dan 2 berulang $\\Rightarrow$ Bukan Fungsi<br>' +
+                          '<b>Jawaban Benar: A, C</b>'
+            },
+            {
+                id: 15,
+                type: 'multiple',
+                topic: 'Fungsi',
+                text: 'Manakah dari kejadian/hubungan sehari-hari berikut yang membentuk Korespondensi Satu-Satu?<br><i>(Jawaban benar lebih dari satu.)</i>',
+                options: [
+                    'a. Negara dengan lagu kebangsaannya / benderanya',
+                    'b. Siswa dengan Nomor Induk Siswa (NIS)-nya',
+                    'c. Siswa dengan tempat lahirnya',
+                    'd. Siswa dengan tanggal lahirnya'
+                ],
+                key: [0, 1], // A, B
+                solution: 'Korespondensi satu-satu membutuhkan pasangan unik bolak-balik:<br>' +
+                          'a) Setiap negara tepat punya 1 lagu kebangsaan unik $\\Rightarrow$ <b>Benar</b><br>' +
+                          'b) Setiap siswa tepat punya 1 NIS unik $\\Rightarrow$ <b>Benar</b><br>' +
+                          'c) Beberapa siswa bisa lahir di kota yang sama $\\Rightarrow$ Bukan 1-1<br>' +
+                          'd) Beberapa siswa bisa lahir di tanggal yang sama $\\Rightarrow$ Bukan 1-1<br>' +
+                          '<b>Jawaban Benar: A, B</b>'
+            },
+            {
+                id: 16,
+                type: 'multiple',
+                topic: 'SPLDV',
+                text: 'Di sebuah toko, harga 4 buah buku tulis dan 2 buah pensil adalah Rp13.000,00, sedangkan harga 3 buah buku tulis dan 1 buah pensil adalah Rp9.000,00. Pilihlah pernyataan-pernyataan yang BENAR di bawah ini!',
+                options: [
+                    'a. Harga 1 buah buku tulis adalah Rp2.500,00.',
+                    'b. Harga 1 buah pensil adalah Rp1.500,00.',
+                    'c. Harga 2 buah buku tulis dan 1 buah pensil adalah Rp6.500,00.',
+                    'd. Harga 5 buah buku tulis dan 2 buah pensil adalah Rp14.000,00.'
+                ],
+                key: [0, 1, 2], // A, B, C
+                solution: 'Sistem Persamaan:<br>' +
+                          '$4x + 2y = 13.000 \\Rightarrow 2x + y = 6.500$<br>' +
+                          '$3x + y = 9.000$<br>' +
+                          'Kurangkan $(3x+y) - (2x+y) = 9.000 - 6.500 \\Rightarrow x = 2.500$ (Buku).<br>' +
+                          'Harga pensil $y = 6.500 - 2(2.500) = 1.500$ (Pensil).<br>' +
+                          '• Opsi a: $x = 2.500$ (BENAR)<br>' +
+                          '• Opsi b: $y = 1.500$ (BENAR)<br>' +
+                          '• Opsi c: $2(2.500) + 1.500 = 6.500$ (BENAR)<br>' +
+                          '• Opsi d: $5(2.500) + 2(1.500) = 15.500 \\neq 14.000$ (SALAH)<br>' +
+                          '<b>Jawaban Benar: A, B, C</b>'
+            },
+            {
+                id: 17,
+                type: 'multiple',
+                topic: 'Baris dan Deret',
+                text: 'Dalam suatu studio bioskop terdapat kursi yang disusun dalam 10 baris. Baris paling depan (ke-1) terdiri dari 10 kursi, dan jumlah kursi pada tiap baris berikutnya selalu bertambah 4 kursi.<br>Pilihlah semua pernyataan yang BENAR di bawah ini!',
+                options: [
+                    'a. Beda (b) dari susunan barisan kursi tersebut adalah 4.',
+                    'b. Banyaknya kursi pada baris paling atas (ke-10) adalah 50 kursi.',
+                    'c. Banyaknya kursi pada baris ke-5 adalah 26 kursi.',
+                    'd. Jumlah seluruh kursi di dalam studio bioskop tersebut adalah 300 kursi.'
+                ],
+                key: [0, 2], // A, C
+                solution: '$a = 10$, $b = 4$, $n = 10$.<br>' +
+                          'a) Beda $(b) = 4$ <i>(BENAR)</i><br>' +
+                          'b) $U_{10} = 10 + 9(4) = 46 \\neq 50$ <i>(SALAH)</i><br>' +
+                          'c) $U_5 = 10 + 4(4) = 26$ <i>(BENAR)</i><br>' +
+                          'd) $S_{10} = \\frac{10}{2}(10 + 46) = 5(56) = 280 \\neq 300$ <i>(SALAH)</i><br>' +
+                          '<b>Jawaban Benar: A, C</b>'
+            },
+            {
+                id: 18,
+                type: 'tf_matrix', // Benar / Salah Table
+                topic: 'SPLDV',
+                text: 'Tahun ini, umur Boni dua tahun lebih muda dari umur Jamal. Tiga tahun lagi, jumlah umur Boni dan umur Jamal adalah 32 tahun. Tentukan Benar atau Salah pada setiap pernyataan berikut:',
+                statements: [
+                    'Umur Jamal tahun ini adalah 14 tahun.',
+                    'Umur Boni tahun ini adalah 10 tahun.',
+                    'Penjumlahan dari umur Boni dan umur Jamal tahun ini adalah 26 tahun.'
+                ],
+                key: [true, false, true], // B, S, B
+                solution: 'Misal $B = \\text{Boni}$, $J = \\text{Jamal}$.<br>' +
+                          '$B = J - 2$<br>' +
+                          'Tiga tahun lagi: $(J+3) + (B+3) = 32 \\Rightarrow J + B + 6 = 32 \\Rightarrow J + B = 26$<br>' +
+                          'Substitusi $B = J - 2$:<br>' +
+                          '$J + (J - 2) = 26 \\Rightarrow 2J = 28 \\Rightarrow J = 14\\text{ tahun}, B = 12\\text{ tahun}$.<br>' +
+                          '• Pernyataan 1: Umur Jamal 14 tahun $\\Rightarrow$ <b>BENAR</b><br>' +
+                          '• Pernyataan 2: Umur Boni 10 tahun $\\Rightarrow$ <b>SALAH</b> (karena umur Boni sebenarnya 12 tahun)<br>' +
+                          '• Pernyataan 3: Total umur tahun ini $14 + 12 = 26$ $\\Rightarrow$ <b>BENAR</b>'
+            },
+            {
+                id: 19,
+                type: 'tf_matrix',
+                topic: 'Baris dan Deret',
+                text: 'Seutas tali dipotong menjadi 5 bagian. Panjang potongan-potongan tali tersebut membentuk barisan geometri. Jika panjang potongan tali terpendek adalah 4 cm dan potongan tali terpanjang adalah 64 cm. Tentukan Benar atau Salah pada setiap pernyataan berikut:',
+                statements: [
+                    'Panjang tali mula-mula sebelum dipotong adalah 124 cm.',
+                    'Rasio (r) dari barisan geometri potongan tali tersebut adalah 2.',
+                    'Panjang potongan tali ke-3 adalah 10 cm.'
+                ],
+                key: [true, true, false], // B, B, S
+                solution: '$n = 5, a = 4, U_5 = 64$.<br>' +
+                          '$U_5 = a \\cdot r^4 \\Rightarrow 64 = 4 \\cdot r^4 \\Rightarrow r^4 = 16 \\Rightarrow r = 2$.<br>' +
+                          '• Pernyataan 1: $S_5 = \\frac{4(2^5 - 1)}{2 - 1} = 4(31) = 124\\text{ cm}$ $\\Rightarrow$ <b>BENAR</b><br>' +
+                          '• Pernyataan 2: Rasio $r = 2$ $\\Rightarrow$ <b>BENAR</b><br>' +
+                          '• Pernyataan 3: $U_3 = a \\cdot r^2 = 4 \\cdot 2^2 = 16\\text{ cm} \\neq 10\\text{ cm}$ $\\Rightarrow$ <b>SALAH</b> (seharusnya 16 cm)'
+            },
+            {
+                id: 20,
+                type: 'tf_matrix',
+                topic: 'Fungsi',
+                text: 'Diketahui suatu fungsi $f(x) = px - q$. Jika nilai $f(1) = 4$ dan $f(2) = 12$, tentukan nilai BENAR atau SALAH pada setiap pernyataan berikut:',
+                statements: [
+                    'Nilai $p = 8$ dan $q = -4$.',
+                    'Rumus fungsi tersebut adalah $f(x) = 8x - 4$.',
+                    'Nilai dari $f(3)$ adalah 20.'
+                ],
+                key: [false, true, true], // S, B, B
+                solution: '$f(1) = p(1) - q = 4 \\Rightarrow p - q = 4$<br>' +
+                          '$f(2) = p(2) - q = 12 \\Rightarrow 2p - q = 12$<br>' +
+                          'Kurangkan: $p = 8$. Substitusi ke $p - q = 4 \\Rightarrow 8 - q = 4 \\Rightarrow q = 4$.<br>' +
+                          '• Pernyataan 1: $p = 8$ dan $q = -4$ $\\Rightarrow$ <b>SALAH</b> (karena $q = 4$)<br>' +
+                          '• Pernyataan 2: Rumus $f(x) = 8x - 4$ $\\Rightarrow$ <b>BENAR</b><br>' +
+                          '• Pernyataan 3: $f(3) = 8(3) - 4 = 20$ $\\Rightarrow$ <b>BENAR</b>'
+            }
+        ];
+
+        let currentView = 'home';
+        let currentQuestionIndex = 0;
+        let quizMode = 'belajar'; // 'belajar' or 'ujian'
+        let userAnswers = Array(questionsData.length).fill(null);
+        let examTimer = null;
+        let timeRemaining = 45 * 60; // 45 minutes in seconds
+
+        // Initialize App on DOM Content Loaded
+        window.onload = function() {
+            renderMath();
+            initNavGrid();
+            loadQuestion(0);
+        };
+
+        function switchView(viewName) {
+            currentView = viewName;
+            
+            // Hide all views
+            document.getElementById('view-home').classList.add('hidden');
+            document.getElementById('view-modul').classList.add('hidden');
+            document.getElementById('view-lesson2').classList.add('hidden');
+
+            // Deactivate all nav buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+
+            // Show selected view
+            if (viewName === 'home') {
+                document.getElementById('view-home').classList.remove('hidden');
+                document.getElementById('nav-home').classList.add('active');
+            } else if (viewName === 'modul') {
+                document.getElementById('view-modul').classList.remove('hidden');
+                document.getElementById('nav-modul').classList.add('active');
+                setTimeout(renderMath, 20);
+            } else if (viewName === 'lesson2') {
+                document.getElementById('view-lesson2').classList.remove('hidden');
+                document.getElementById('nav-lesson2').classList.add('active');
+                loadQuestion(currentQuestionIndex);
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function scrollToModuleSection(sectionId) {
+            const elem = document.getElementById(sectionId);
+            if (elem) {
+                elem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function filterModuleTopic() {
+            const query = document.getElementById('module-search').value.toLowerCase();
+            const sections = ['m-aljabar', 'm-spldv', 'm-fungsi', 'm-barisan'];
+            sections.forEach(secId => {
+                const sec = document.getElementById(secId);
+                if (sec) {
+                    if (sec.innerText.toLowerCase().includes(query)) {
+                        sec.style.display = 'block';
+                    } else {
+                        sec.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        function openModeModal() {
+            document.getElementById('mode-modal').classList.remove('hidden');
+        }
+
+        function closeModeModal() {
+            document.getElementById('mode-modal').classList.add('hidden');
+        }
+
+        function selectQuizMode(mode) {
+            quizMode = mode;
+            closeModeModal();
+
+            const badge = document.getElementById('quiz-mode-badge');
+            const timerBox = document.getElementById('timer-box');
+            const btnSubmit = document.getElementById('btn-submit-exam');
+
+            if (mode === 'belajar') {
+                badge.innerText = 'MODE BELAJAR';
+                badge.className = 'px-2.5 py-0.5 bg-emerald-100 text-almazaya-800 text-[11px] font-black uppercase rounded-full';
+                timerBox.classList.add('hidden');
+                btnSubmit.classList.add('hidden');
+                stopTimer();
+            } else {
+                badge.innerText = 'MODE UJIAN';
+                badge.className = 'px-2.5 py-0.5 bg-gold-500 text-slate-950 text-[11px] font-black uppercase rounded-full';
+                timerBox.classList.remove('hidden');
+                btnSubmit.classList.remove('hidden');
+                startTimer();
+            }
+
+            loadQuestion(currentQuestionIndex);
+        }
+
+        function startTimer() {
+            stopTimer();
+            timeRemaining = 45 * 60;
+            updateTimerDisplay();
+            examTimer = setInterval(() => {
+                timeRemaining--;
+                updateTimerDisplay();
+                if (timeRemaining <= 0) {
+                    stopTimer();
+                    alert('Waktu Ujian Telah Habis!');
+                    submitExam();
+                }
+            }, 1000);
+        }
+
+        function stopTimer() {
+            if (examTimer) clearInterval(examTimer);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            document.getElementById('timer-display').innerText = 
+                `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        }
+
+        function initNavGrid() {
+            const grid = document.getElementById('nav-grid');
+            grid.innerHTML = '';
+            for (let i = 0; i < questionsData.length; i++) {
+                const btn = document.createElement('button');
+                btn.id = `nav-item-${i}`;
+                btn.onclick = () => jumpToQuestion(i);
+                btn.className = 'w-9 h-9 rounded-xl font-bold text-xs flex items-center justify-center transition-all bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200';
+                btn.innerText = i + 1;
+                grid.appendChild(btn);
+            }
+        }
+
+        function updateNavGridState() {
+            for (let i = 0; i < questionsData.length; i++) {
+                const btn = document.getElementById(`nav-item-${i}`);
+                if (!btn) continue;
+
+                const isAnswered = isQuestionAnswered(i);
+                const isActive = (i === currentQuestionIndex);
+
+                if (isActive) {
+                    btn.className = 'w-9 h-9 rounded-xl font-black text-xs flex items-center justify-center transition-all bg-gold-400 text-slate-950 shadow-md ring-2 ring-gold-500 ring-offset-1';
+                } else if (isAnswered) {
+                    btn.className = 'w-9 h-9 rounded-xl font-bold text-xs flex items-center justify-center transition-all bg-almazaya-800 text-white shadow-xs';
+                } else {
+                    btn.className = 'w-9 h-9 rounded-xl font-bold text-xs flex items-center justify-center transition-all bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200';
+                }
+            }
+
+            // Update answered counter
+            const answeredCount = userAnswers.filter((ans, idx) => isQuestionAnswered(idx)).length;
+            document.getElementById('progress-counter').innerText = `${answeredCount} / 20 Terjawab`;
+        }
+
+        function isQuestionAnswered(index) {
+            const ans = userAnswers[index];
+            if (ans === null || ans === undefined) return false;
+            if (Array.isArray(ans)) return ans.length > 0;
+            if (typeof ans === 'object') return Object.keys(ans).length === 3;
+            return true;
+        }
+
+        function loadQuestion(index) {
+            currentQuestionIndex = index;
+            const q = questionsData[index];
+
+            document.getElementById('q-number-badge').innerText = q.id;
+            document.getElementById('q-topic-tag').innerText = q.topic;
+            document.getElementById('q-text').innerHTML = q.text;
+
+            const typeMap = {
+                'single': 'Pilihan Ganda',
+                'multiple': 'Pilihan Ganda Kompleks',
+                'tf_matrix': 'Tabel Benar / Salah'
+            };
+            document.getElementById('q-type-badge').innerText = typeMap[q.type] || 'Soal';
+
+            // Render Options
+            const container = document.getElementById('q-options-container');
+            container.innerHTML = '';
+
+            if (q.type === 'single') {
+                q.options.forEach((opt, optIdx) => {
+                    const isSelected = userAnswers[index] === optIdx;
+                    const optDiv = document.createElement('div');
+                    optDiv.onclick = () => selectSingleAnswer(optIdx);
+                    optDiv.className = `p-3.5 sm:p-4 rounded-2xl border-2 transition-all cursor-pointer flex items-center space-x-3 ${
+                        isSelected 
+                        ? 'border-almazaya-700 bg-emerald-50/70 text-almazaya-900 font-bold shadow-sm' 
+                        : 'border-slate-200 hover:border-slate-300 bg-white text-slate-700'
+                    }`;
+                    optDiv.innerHTML = `
+                        <div class="w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${isSelected ? 'border-almazaya-800 bg-almazaya-800 text-white' : 'border-slate-300'}">
+                            ${isSelected ? '<i class="fa-solid fa-check text-[10px]"></i>' : ''}
+                        </div>
+                        <span class="text-sm">${opt}</span>
+                    `;
+                    container.appendChild(optDiv);
+                });
+            } else if (q.type === 'multiple') {
+                const currentAns = userAnswers[index] || [];
+                q.options.forEach((opt, optIdx) => {
+                    const isSelected = currentAns.includes(optIdx);
+                    const optDiv = document.createElement('div');
+                    optDiv.onclick = () => toggleMultipleAnswer(optIdx);
+                    optDiv.className = `p-3.5 sm:p-4 rounded-2xl border-2 transition-all cursor-pointer flex items-center space-x-3 ${
+                        isSelected 
+                        ? 'border-almazaya-700 bg-emerald-50/70 text-almazaya-900 font-bold shadow-sm' 
+                        : 'border-slate-200 hover:border-slate-300 bg-white text-slate-700'
+                    }`;
+                    optDiv.innerHTML = `
+                        <div class="w-5 h-5 rounded-lg border-2 flex items-center justify-center shrink-0 ${isSelected ? 'border-almazaya-800 bg-almazaya-800 text-white' : 'border-slate-300'}">
+                            ${isSelected ? '<i class="fa-solid fa-check text-[10px]"></i>' : ''}
+                        </div>
+                        <span class="text-sm">${opt}</span>
+                    `;
+                    container.appendChild(optDiv);
+                });
+            } else if (q.type === 'tf_matrix') {
+                const currentAns = userAnswers[index] || {};
+                const table = document.createElement('div');
+                table.className = 'border border-slate-200 rounded-2xl overflow-hidden shadow-xs bg-white text-xs sm:text-sm';
+                
+                let tableHtml = `
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-100 text-slate-700 border-b border-slate-200 text-xs">
+                                <th class="p-3 font-extrabold">Pernyataan</th>
+                                <th class="p-3 font-extrabold text-center w-20">Benar</th>
+                                <th class="p-3 font-extrabold text-center w-20">Salah</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                `;
+
+                q.statements.forEach((stmt, sIdx) => {
+                    const val = currentAns[sIdx];
+                    tableHtml += `
+                        <tr class="hover:bg-slate-50/80">
+                            <td class="p-3 text-slate-800 font-medium">${stmt}</td>
+                            <td class="p-3 text-center">
+                                <button onclick="setTfAnswer(${sIdx}, true)" class="w-7 h-7 rounded-lg border-2 inline-flex items-center justify-center transition-all ${
+                                    val === true ? 'bg-emerald-600 border-emerald-600 text-white' : 'border-slate-300 bg-white'
+                                }">
+                                    ${val === true ? '<i class="fa-solid fa-check text-xs"></i>' : ''}
+                                </button>
+                            </td>
+                            <td class="p-3 text-center">
+                                <button onclick="setTfAnswer(${sIdx}, false)" class="w-7 h-7 rounded-lg border-2 inline-flex items-center justify-center transition-all ${
+                                    val === false ? 'bg-red-500 border-red-500 text-white' : 'border-slate-300 bg-white'
+                                }">
+                                    ${val === false ? '<i class="fa-solid fa-xmark text-xs"></i>' : ''}
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+                tableHtml += `</tbody></table>`;
+                table.innerHTML = tableHtml;
+                container.appendChild(table);
+            }
+
+            // Solution Box setup
+            const solBox = document.getElementById('solution-box');
+            const solText = document.getElementById('sol-text');
+            const btnPembahasan = document.getElementById('btn-toggle-pembahasan');
+
+            solText.innerHTML = q.solution;
+
+            // Key badge formatting
+            let keyStr = '';
+            if (q.type === 'single') keyStr = ['A','B','C','D'][q.key];
+            else if (q.type === 'multiple') keyStr = q.key.map(k => ['A','B','C','D'][k]).join(', ');
+            else if (q.type === 'tf_matrix') keyStr = q.key.map(k => k ? 'Benar' : 'Salah').join(', ');
+            document.getElementById('sol-key-badge').innerText = `Kunci: ${keyStr}`;
+
+            if (quizMode === 'belajar') {
+                btnPembahasan.classList.remove('hidden');
+                solBox.classList.add('hidden'); // hidden by default, toggled by click
+                document.getElementById('toggle-pembahasan-text').innerText = 'Lihat Pembahasan';
+            } else {
+                btnPembahasan.classList.add('hidden');
+                solBox.classList.add('hidden');
+            }
+
+            // Nav buttons state
+            document.getElementById('btn-prev-q').disabled = (index === 0);
+            
+            updateNavGridState();
+            
+            // Render KaTeX Math expressions reliably
+            setTimeout(renderMath, 10);
+        }
+
+        function selectSingleAnswer(optIdx) {
+            userAnswers[currentQuestionIndex] = optIdx;
+            loadQuestion(currentQuestionIndex);
+        }
+
+        function toggleMultipleAnswer(optIdx) {
+            let current = userAnswers[currentQuestionIndex] || [];
+            if (!Array.isArray(current)) current = [];
+            
+            if (current.includes(optIdx)) {
+                current = current.filter(i => i !== optIdx);
+            } else {
+                current.push(optIdx);
+                current.sort();
+            }
+            userAnswers[currentQuestionIndex] = current;
+            loadQuestion(currentQuestionIndex);
+        }
+
+        function setTfAnswer(statementIdx, boolVal) {
+            let current = userAnswers[currentQuestionIndex] || {};
+            if (typeof current !== 'object' || Array.isArray(current)) current = {};
+            
+            current[statementIdx] = boolVal;
+            userAnswers[currentQuestionIndex] = current;
+            loadQuestion(currentQuestionIndex);
+        }
+
+        function togglePembahasan() {
+            const solBox = document.getElementById('solution-box');
+            const txt = document.getElementById('toggle-pembahasan-text');
+            if (solBox.classList.contains('hidden')) {
+                solBox.classList.remove('hidden');
+                txt.innerText = 'Sembunyikan Pembahasan';
+                setTimeout(renderMath, 10);
+            } else {
+                solBox.classList.add('hidden');
+                txt.innerText = 'Lihat Pembahasan';
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < questionsData.length - 1) {
+                loadQuestion(currentQuestionIndex + 1);
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                loadQuestion(currentQuestionIndex - 1);
+            }
+        }
+
+        function jumpToQuestion(idx) {
+            loadQuestion(idx);
+        }
+
+        function confirmSubmitExam() {
+            const answeredCount = userAnswers.filter((a, idx) => isQuestionAnswered(idx)).length;
+            if (answeredCount < questionsData.length) {
+                if (!confirm(`Anda baru menjawab ${answeredCount} dari 20 soal. Yakin ingin menyelesaikan ujian?`)) {
+                    return;
+                }
+            } else {
+                if (!confirm('Apakah Anda yakin ingin mengumpulkan lembar jawaban ujian?')) {
+                    return;
+                }
+            }
+            submitExam();
+        }
+
+        function submitExam() {
+            stopTimer();
+
+            let totalPoints = 0;
+            let correctCount = 0;
+
+            questionsData.forEach((q, idx) => {
+                const ans = userAnswers[idx];
+                let isCorrect = false;
+
+                if (q.type === 'single') {
+                    if (ans === q.key) isCorrect = true;
+                } else if (q.type === 'multiple') {
+                    if (Array.isArray(ans) && ans.length === q.key.length && ans.every((val, i) => val === q.key[i])) {
+                        isCorrect = true;
+                    }
+                } else if (q.type === 'tf_matrix') {
+                    if (ans && typeof ans === 'object') {
+                        const matchAll = q.key.every((val, sIdx) => ans[sIdx] === val);
+                        if (matchAll) isCorrect = true;
+                    }
+                }
+
+                if (isCorrect) {
+                    correctCount++;
+                    totalPoints += 5; // 20 questions * 5 = 100 max points
+                }
+            });
+
+            const wrongCount = questionsData.length - correctCount;
+            const accuracy = Math.round((correctCount / questionsData.length) * 100);
+
+            document.getElementById('final-score-text').innerText = totalPoints;
+            document.getElementById('score-correct-count').innerText = correctCount;
+            document.getElementById('score-wrong-count').innerText = wrongCount;
+            document.getElementById('score-accuracy-text').innerText = `${accuracy}%`;
+
+            document.getElementById('result-modal').classList.remove('hidden');
+        }
+
+        function reviewExamAnswers() {
+            document.getElementById('result-modal').classList.add('hidden');
+            quizMode = 'belajar';
+            document.getElementById('quiz-mode-badge').innerText = 'REVIEW UJIAN';
+            document.getElementById('btn-toggle-pembahasan').classList.remove('hidden');
+            document.getElementById('btn-submit-exam').classList.add('hidden');
+            document.getElementById('timer-box').classList.add('hidden');
+            loadQuestion(0);
+        }
+
+        function restartQuiz() {
+            document.getElementById('result-modal').classList.add('hidden');
+            userAnswers = Array(questionsData.length).fill(null);
+            if (quizMode === 'ujian') {
+                startTimer();
+            }
+            loadQuestion(0);
+        }
+    </script>
+</body>
+</html>
